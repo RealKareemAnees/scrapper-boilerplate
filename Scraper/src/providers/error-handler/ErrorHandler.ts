@@ -1,3 +1,9 @@
+import { NetworkError } from '@/Errors/NetworkError';
+import { SystemError } from '@/Errors/SystemError';
+import { AppError } from '@/interfaces/AppError.abstract';
+import { handleSystemError } from './handleSystemError';
+import { handleNetworkError } from './handleNetworkError';
+
 export class ErrorHandler {
     private static instance: ErrorHandler;
 
@@ -10,7 +16,14 @@ export class ErrorHandler {
         return ErrorHandler.instance;
     }
 
-    handle(error: Error) {
-        console.error(error);
+    handle(error: AppError) {
+        if (error instanceof NetworkError) {
+            handleNetworkError(error);
+            return;
+        }
+        if (error instanceof SystemError) {
+            handleSystemError(error);
+            return;
+        }
     }
 }
