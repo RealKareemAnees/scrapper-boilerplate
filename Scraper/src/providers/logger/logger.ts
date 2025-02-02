@@ -22,7 +22,7 @@ export class Logger {
     }
 
     start(message: string) {
-        this.log(message, 'cyan', this.className, 'start');
+        this.log(message, 'blue', this.className, 'start');
     }
 
     succeeed(message: string) {
@@ -38,6 +38,14 @@ export class Logger {
     }
 
     info(message: string) {
-        this.log(message, 'magenta', this.className, 'info');
+        this.log(message, 'cyan', this.className, 'info');
+    }
+
+    warn(message: string) {
+        this.log(message, 'yellow', this.className, 'warn');
+    }
+
+    magenta(message: string) {
+        this.log(message, 'magenta', this.className, 'magenta');
     }
 }
