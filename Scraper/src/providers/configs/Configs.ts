@@ -1,8 +1,14 @@
-import { ConstantsInterface } from '@/interfaces/Constants.interfacee';
+import { Constants } from '@/interfaces/Constants.type';
+import { config } from 'dotenv';
+import { join } from 'path';
 export class Configs {
-    constructor() {}
+    constructor() {
+        config({
+            path: join(__dirname, '../../../.env'),
+        });
+    }
 
-    public get<T>(key: keyof ConstantsInterface): T {
-        return process.env[key] as T;
+    public get(key: keyof typeof Constants): string {
+        return process.env[key];
     }
 }
