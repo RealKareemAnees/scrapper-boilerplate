@@ -1,4 +1,1 @@
-
-export interface Constants {
-    
-}
+export interface ConstantsInterface {}

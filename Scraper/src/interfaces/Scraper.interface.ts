@@ -1,3 +1,3 @@
-export interface Scraper {
+export interface ScraperInterface {
     scrape(): Promise<void>;
 }

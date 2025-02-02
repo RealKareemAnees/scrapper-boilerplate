@@ -5,7 +5,7 @@
  * @property {string[]} sessionURLS - The URLs that are part of the session
  * @property {number} currentURLIndex - The index of the current URL in the sessionURLS array
  */
-export type ProgressSessionSchema = {
+export type ProgressSessionSchemaInterface = {
     startTime: string;
     lastEdited: string;
     sessionURLS: string[];
