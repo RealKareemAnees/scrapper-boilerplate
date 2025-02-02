@@ -45,3 +45,29 @@ this class provides the implementation of services that the scrapper is supposed
 ![alt text](Assets/image-7.png)
 
 ![alt text](Assets/image-8.png)
+
+### details
+
+#### strategies namespace
+
+useful to register strategies
+
+```ts
+export namespace StrategiesNameSpace {
+    export const condonow = 'condonow';
+}
+```
+
+```ts
+import { StrategiesNameSpace } from '../interfaces/strategies.namespace';
+
+export class Controller {
+    constructor() {}
+
+    public startNewScrapingSession(
+        strategyName: keyof typeof StrategiesNameSpace,
+    ): void {}
+}
+```
+
+the controller needs these namespace fields to use them
