@@ -29,7 +29,7 @@ export class Logger {
         this.log(message, 'green', this.className, 'succeed');
     }
 
-    fail(message: string) {
+    failure(message: string) {
         this.log(message, 'gray', this.className, 'fail');
     }
 
