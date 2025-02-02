@@ -53,7 +53,7 @@ export class Database {
         dbName: string,
         collectionName: string,
         document: any,
-    ) {
+    ): Promise<ObjectId> {
         this.logger.start('Inserting document');
         return await this.executeWithConnection(async (client) => {
             const db = client.db(dbName);
@@ -80,5 +80,26 @@ export class Database {
         });
         this.logger.succeeed('Document retrieved');
         return document;
+    }
+
+    @WithRetry(
+        Number(configs.get(Constants.DATABASE_RETRY_COUNT)),
+        Number(configs.get(Constants.DATABASE_RETRY_DELAY)),
+    )
+    public async updateDocument(
+        dbName: string,
+        collectionName: string,
+        filter: {
+            [key: string]: any;
+        },
+        document: any,
+    ) {
+        this.logger.start('Updating document');
+        await this.executeWithConnection(async (client) => {
+            const db = client.db(dbName);
+            const collection = db.collection(collectionName);
+            await collection.updateOne(filter, { $set: document });
+        });
+        this.logger.succeeed('Document updated');
     }
 }

@@ -37,4 +37,19 @@ describe('Database', () => {
         }
         expect(error).toBeNull(); // Ensure no error
     });
+
+    it('should update a document successfully', async () => {
+        let error = null;
+        try {
+            await database.updateDocument(
+                'test',
+                'test',
+                { test: 'test' },
+                { test: 'test2' },
+            );
+        } catch (err) {
+            error = err;
+        }
+        expect(error).toBeNull(); // Ensure no error
+    });
 });
