@@ -1,11 +1,12 @@
 class Main {
-    constructor() {
-        
-    }
+    constructor() {}
 
     public static async main() {
-        console.log("Hello World");
+        console.log('Hello World');
     }
+
+    public static async initializeDependencies() {}
+    public static async listen() {}
 }
 
 Main.main();
