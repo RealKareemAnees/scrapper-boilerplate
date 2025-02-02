@@ -102,4 +102,22 @@ export class Database {
         });
         this.logger.succeeed('Document updated');
     }
+
+    @WithRetry(
+        Number(configs.get(Constants.DATABASE_RETRY_COUNT)),
+        Number(configs.get(Constants.DATABASE_RETRY_DELAY)),
+    )
+    public async retrieveLatestDocument(
+        dbName: string,
+        collectionName: string,
+    ) {
+        this.logger.start('Retrieving document');
+        const document = await this.executeWithConnection(async (client) => {
+            const db = client.db(dbName);
+            const collection = db.collection(collectionName);
+            return await collection.findOne({}, { sort: { _id: -1 } });
+        });
+        this.logger.succeeed('Document retrieved');
+        return document;
+    }
 }
