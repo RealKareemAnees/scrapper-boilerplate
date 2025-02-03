@@ -17,18 +17,6 @@ export class Controller {
         strategyName: keyof typeof StrategiesNameSpace | typeof ScraperAbstract,
         progressType: ProgressType,
     ): Promise<void> {
-        if (strategyName == StrategiesNameSpace.condonow) {
-            const condonowService = new CondnowService(
-                new Configs(),
-                new Database(),
-                new ErrorFactory(),
-                new ErrorHandler(),
-                new ImageUploader(),
-                new Logger('CondonowService'),
-                new Progress(),
-            );
-            await condonowService.scrape(progressType);
-        }
         if (strategyName == StrategiesNameSpace.gtahomes) {
             const gtahomesService = new GtahomesService(
                 new Configs(),

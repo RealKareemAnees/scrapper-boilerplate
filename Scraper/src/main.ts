@@ -6,6 +6,7 @@ import { exit } from './utils/exit';
 import { Controller } from './Controller';
 import { ProgressType } from './interfaces/progress.types';
 import { StrategiesNameSpace } from './interfaces/strategies.namespace';
+import { SitemapChoice } from './interfaces/SitemapChoices.type';
 
 class Main {
     constructor() {}
@@ -82,12 +83,13 @@ class Main {
     public static async handleChoices(
         scraper: keyof typeof StrategiesNameSpace,
         progress: ProgressType | 'Exit',
+        sitemapLink?: string,
     ) {
         if (progress === 'Exit') return exit(0);
 
         const controller = new Controller();
 
-        return await controller.startScraping(scraper, progress);
+        return await controller.startScraping(scraper, progress, sitemapLink);
     }
 }
 

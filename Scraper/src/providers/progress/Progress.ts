@@ -18,7 +18,7 @@ export class Progress {
 
     async createNewProgressSession(
         session: ProgressSessionSchemaInterface,
-    ): Promise<void> {
+    ): Promise<ProgressSessionSchemaInterface> {
         this.logger.info('Creating new progress session...');
         this.currentProgressSession = session;
 
@@ -30,6 +30,8 @@ export class Progress {
 
         this.currentProgressSessionObjectId = objectId;
         this.logger.info('Progress session created.');
+
+        return this.getCurrentProgress;
     }
 
     async updateProgressSession(
@@ -55,7 +57,7 @@ export class Progress {
         await this.updateProgressSession(this.currentProgressSession);
     }
 
-    async pullLatestProgressSession(): Promise<void> {
+    async pullLatestProgressSession(): Promise<ProgressSessionSchemaInterface> {
         this.logger.info('Pulling latest progress session...');
         const progressSession = await this.db.retrieveLatestDocument(
             this.configs.get(Constants.PROGRESS_DB),
@@ -65,5 +67,7 @@ export class Progress {
         this.currentProgressSession = progressSession;
         this.currentProgressSessionObjectId = progressSession._id;
         this.logger.info('Progress session pulled.');
+
+        return this.getCurrentProgress;
     }
 }
