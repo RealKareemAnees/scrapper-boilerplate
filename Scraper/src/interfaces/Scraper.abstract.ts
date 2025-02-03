@@ -8,19 +8,7 @@ import { Logger } from '@/providers/logger/logger';
 import { Progress } from '@/providers/progress/Progress';
 
 export abstract class ScraperAbstract {
-
-    constructor(
-        private configs: Configs,
-        private database: Database,
-        private errorFactory: ErrorFactory,
-        private errorHandler: ErrorHandler,
-        private imageUploader: ImageUploader,
-        private logger: Logger,
-        private progressProvider: Progress,
-    ) {
-
-        
-    }
+    constructor() {}
 
     scrape(sessionType: ProgressType): void {
         throw new Error('Method not implemented.');
