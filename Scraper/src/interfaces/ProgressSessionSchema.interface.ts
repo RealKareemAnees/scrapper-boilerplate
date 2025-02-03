@@ -10,4 +10,5 @@ export type ProgressSessionSchemaInterface = {
     lastEdited: string;
     sessionURLS: string[];
     currentURLIndex: number;
+    scraper?: 'condonow' | 'gtahomes';
 };
