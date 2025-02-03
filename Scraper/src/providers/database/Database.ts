@@ -1,6 +1,6 @@
 import { WithRetry } from '@/decorators/WithRetry.decorator';
 import { SystemError } from '@/Errors/SystemError';
-import { Logger } from '@/providers/logger/Logger';
+import { Logger } from '../logger/logger';
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
 import { Configs } from '../configs/Configs';
 import { Constants } from '@/interfaces/Constants.type';
@@ -15,11 +15,11 @@ export class Database {
     private static instance: Database;
     private logger = new Logger('Database');
 
-    private constructor() {
-        console.log(
-            'MongoDB Connection String:',
-            configs.get(Constants.MONGODB_CONNECTION_STRING),
-        );
+    constructor() {
+        if (!Database.instance) {
+            Database.instance = this;
+        }
+        return Database.instance;
     }
 
     public static getInstance(): Database {
