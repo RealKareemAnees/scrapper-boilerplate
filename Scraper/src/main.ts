@@ -4,6 +4,8 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import { exit } from './utils/exit';
 import { Controller } from './Controller';
+import { ProgressType } from './interfaces/progress.types';
+import { StrategiesNameSpace } from './interfaces/strategies.namespace';
 
 class Main {
     constructor() {}
@@ -20,6 +22,10 @@ class Main {
 
         console.log(chalk.bold.blue('Scraper: '), scraper);
         console.log(chalk.bold.blue('Progress: '), progress);
+
+        console.log('');
+
+        await Main.handleChoices(scraper, progress);
     }
 
     public static async wellcome() {
@@ -35,34 +41,48 @@ class Main {
         );
     }
 
-    public static async chooseScraper() {
+    public static async chooseScraper(
+        choices: (keyof typeof StrategiesNameSpace)[] = [
+            'condonow',
+            'gtahomes',
+        ],
+    ) {
         const { scraper } = await inquirer.prompt([
             {
                 type: 'list',
                 name: 'scraper',
                 message: 'Choose a scraper',
-                choices: ['condonow', 'gtahomes'],
+                choices,
             },
         ]);
 
         return scraper;
     }
 
-    public static async chooseProgress() {
+    public static async chooseProgress(
+        choices: (ProgressType | 'Exit')[] = [
+            'Continue scraping',
+            'Start new one',
+            'Exit',
+        ],
+    ) {
         const { scraper } = await inquirer.prompt([
             {
                 type: 'list',
                 name: 'scraper',
                 message: 'Do you want to continue scraping or start new one?',
-                choices: ['Continue scraping', 'Start new one', 'Exit'],
+                choices,
             },
         ]);
 
         return scraper;
     }
 
-    public static async handleChoices(scraper: any, progress: any) {
-        if (progress === 'exit') return exit(0);
+    public static async handleChoices(
+        scraper: keyof typeof StrategiesNameSpace,
+        progress: ProgressType | 'Exit',
+    ) {
+        if (progress === 'Exit') return exit(0);
 
         const controller = new Controller();
 
