@@ -7,8 +7,8 @@ import { ErrorHandler } from '@/providers/error-handler/ErrorHandler';
 import { ImageUploader } from '@/providers/image-uploader/ImageUploader';
 import { Logger } from '@/providers/logger/logger';
 import { Progress } from '@/providers/progress/Progress';
-import { CondnowService } from './services/Condonow.service';
-import { GtahomesService } from './services/Gtahomes.service';
+import { CondnowService } from './services/condonow/Condonow.service';
+import { GtahomesService } from './services/gtahomes/Gtahomes.service';
 export class Controller {
     constructor() {}
 

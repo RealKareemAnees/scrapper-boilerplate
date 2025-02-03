@@ -11,17 +11,24 @@ import { Progress } from '@/providers/progress/Progress';
 
 export class CondnowService extends ScraperAbstract {
     constructor(
-        arg1: Configs,
-        arg2: Database,
-        arg3: ErrorFactory,
-        arg4: ErrorHandler,
-        arg5: ImageUploader,
-        arg6: Logger,
-        arg7: Progress,
+        configs: Configs,
+        database: Database,
+        errorFactory: ErrorFactory,
+        errorHandler: ErrorHandler,
+        imageUploader: ImageUploader,
+        logger: Logger,
+        progress: Progress,
     ) {
-        super(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+        super(
+            configs,
+            database,
+            errorFactory,
+            errorHandler,
+            imageUploader,
+            logger,
+            progress,
+        );
     }
-
     public async scrape(progressType: ProgressType): Promise<void> {
         console.log('progressType', progressType);
     }
