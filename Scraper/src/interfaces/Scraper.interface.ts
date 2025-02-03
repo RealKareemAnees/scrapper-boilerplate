@@ -1,4 +1,5 @@
+import { ProgressType } from './progress.types';
+
 export interface ScraperInterface {
-    scrape(): Promise<void>;
-    pullSiteMap(): Promise<string[]>;
+    scrape(sessionType: ProgressType);
 }
