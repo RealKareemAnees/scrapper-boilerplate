@@ -43,7 +43,8 @@ class Main {
 
     public static async chooseScraper(
         choices: (keyof typeof StrategiesNameSpace)[] = [
-            'condonow',
+            //@ts-ignore
+            'condonow !Not implemented yet',
             'gtahomes',
         ],
     ) {
