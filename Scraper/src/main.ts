@@ -3,6 +3,7 @@ import { sleep } from './utils/sleep';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import { exit } from './utils/exit';
+import { Controller } from './Controller';
 
 class Main {
     constructor() {}
@@ -40,7 +41,7 @@ class Main {
                 type: 'list',
                 name: 'scraper',
                 message: 'Choose a scraper',
-                choices: ['condonow', 'gta-homes'],
+                choices: ['condonow', 'gtahomes'],
             },
         ]);
 
@@ -60,8 +61,12 @@ class Main {
         return scraper;
     }
 
-    public static async handleChoices(scraper: string, progress: string) {
+    public static async handleChoices(scraper: any, progress: any) {
         if (progress === 'exit') return exit(0);
+
+        const controller = new Controller();
+
+        return await controller.startScraping(scraper, progress);
     }
 }
 
