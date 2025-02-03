@@ -7,7 +7,12 @@ import { handleNetworkError } from './handleNetworkError';
 export class ErrorHandler {
     private static instance: ErrorHandler;
 
-    private constructor() {}
+    constructor() {
+        if (!ErrorHandler.instance) {
+            ErrorHandler.instance = this;
+        }
+        return ErrorHandler.instance;
+    }
 
     static getInstance(): ErrorHandler {
         if (!ErrorHandler.instance) {
