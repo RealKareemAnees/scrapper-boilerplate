@@ -88,6 +88,8 @@ export class GtahomesService extends ScraperAbstract {
                     });
 
                 console.log(this.progressSession);
+
+                await this.scrapeSession(this.progressSession.sessionURLS);
             }
         }
     }
